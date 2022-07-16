@@ -1,0 +1,55 @@
+{% load static %}
+
+<style>
+    .hello-msg{
+        font-size: 18px;
+        color: #fff;
+        margin-right: 20px;
+    }
+    .table-condensed{
+        font-size: 12px;
+    }
+    .btn-condensed{
+        font-size: 12px;
+    }
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+ <img src="{% static 'images/carpool_logo1.png' %}">
+  <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon "></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarNav">
+    <ul class="navbar-nav mr-auto ">
+      <li class="nav-item" >
+        <a class="nav-link" href="{% url 'request_ride' %} ">Request Ride</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ride_status' %}">Ride Status</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ride_insert' %}">Create A Ride</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accept_reject_ride' %}">Accept/Reject Ride</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'leader_board' %}">Leader Board</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'car_registration' %}">Car Registration</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'member_profile' %}">Member Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'instructions' %}">Instructions</a>
+      </li>
+    </ul>
+  </div>
+
+  <span class="hello-msg">Hello, {{request.user}}</span>
+  <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+
+</nav>

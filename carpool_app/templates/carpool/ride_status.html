@@ -1,0 +1,140 @@
+{%  extends 'carpool/main.html' %}
+
+{% block content %}
+
+<h2><span class="badge badge-pill badge-info">Ride Status</span></h2>
+<div><font size="4" face="sans-serif" color="black" >Passenger's Rides</font></div>
+<div>
+
+    <table class="table table-striped table-condensed">
+        <thead class="thead-dark table-condensed">
+            <tr>
+                <th>Request Ride Id</th>
+                <th>Ride Driver</th>
+                <th>Ride Id</th>
+                <th>Car Reg No.</th>
+                <th>Travel Start Time</th>
+                <th>Start Location</th>
+                <th>Destination Location</th>
+                <th>Seats Offered</th>
+                <th>Contribution Amount</th>
+                <th>Luggage Size</th>
+                <th>Request Submit Time</th>
+                <th>Request Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for requestride in requestridelist %}
+            <tr>
+                <td>
+                   {{ requestride.id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.user_id.username }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.member_car_id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.travel_start_time }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.source_location_id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.destination_location_id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.seats_offered }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.contribution_per_head }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.luggage_size_id }}
+                </td>
+                <td>
+                    {{ requestride.record_created_on }}
+                </td>
+                <td>
+                    {{ requestride.request_status }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<br>
+
+<div><font size="4" face="sans-serif" color="black" >Driver's Rides</font></div>
+<div>
+
+    <table class="table table-striped table-condensed">
+        <thead class="thead-dark table-condensed">
+            <tr>
+                <th>Request Ride Id</th>
+                <th>Passenger Name</th>
+                <th>Ride Id</th>
+                <th>Car Reg No.</th>
+                <th>Travel Start Time</th>
+                <th>Start Location</th>
+                <th>Destination Location</th>
+                <th>Seats Offered</th>
+                <th>Contribution Amount</th>
+                <th>Luggage Size</th>
+                <th>Request Submit Time</th>
+                <th>Request Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for requestride in driver_requestridelist %}
+            <tr>
+                <td>
+                   {{ requestride.id }}
+                </td>
+                <td>
+                    {{ requestride.user_id.username }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.member_car_id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.travel_start_time }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.source_location_id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.destination_location_id }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.seats_offered }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.contribution_per_head }}
+                </td>
+                <td>
+                    {{ requestride.ride_id.luggage_size_id }}
+                </td>
+                <td>
+                    {{ requestride.record_created_on }}
+                </td>
+                <td>
+                    {{ requestride.request_status }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

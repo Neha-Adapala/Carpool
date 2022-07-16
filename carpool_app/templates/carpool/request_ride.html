@@ -1,0 +1,118 @@
+{%  extends 'carpool/main.html' %}
+{% load static %}
+{% block content %}
+
+<h2><span class="badge badge-pill badge-info">Request Ride</span></h2>
+<div class="row">
+	<div class="col-md-12">
+		<div class="card card-body">
+
+			<form action="" method="POST">
+
+				{% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputStartLocation">Start Location</label>
+                        <select name="source_location_id" id="source_location_id">
+                        {% for l in location %}
+                            {% if l.id|slugify == selected_source_location_id %}
+                                <option selected value="{{ l.id }}">{{ l.location}}</option>
+                            {% else %}
+                                <option value="{{ l.id }}">{{ l.location}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputDestinationLocation">Destination Location</label>
+                        <select name="destination_location_id" id="destination_location_id">
+                        {% for l in location %}
+                            {% if l.id|slugify == selected_destination_location_id %}
+                                <option selected value="{{ l.id }}">{{ l.location}}</option>
+                            {% else %}
+                                <option value="{{ l.id }}">{{ l.location}}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputTravelStartTime">Travel Start Time</label>
+                        <input id="travel_start_time" type="datetime-local" name="travel_start_time" value="{{ selected_travel_start_time }}">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <input class="btn btn-success btn-condensed" type="submit" name="action" value="Search">
+                    </div>
+                </div>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+    <div>
+        <table class="table table-striped table-condensed">
+            <thead class="thead-dark table-condensed">
+                <tr>
+                    <th>Ride Id</th>
+                    <th>Ride Driver</th>
+                    <th>Ride Created Time</th>
+                    <th>Car Reg No.</th>
+                    <th>Travel Start Time</th>
+                    <th>Start Location</th>
+                    <th>Destination Location</th>
+                    <th>Seats Offered</th>
+                    <th>Contribution Amount</th>
+                    <th>Luggage Size</th>
+                    <th>Request</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for ride in ridelist %}
+                <tr>
+                    <td>
+                        {{ ride.id }}
+                    </td>
+                    <td>
+                        {{ ride.user_id.username }}
+                    </td>
+                    <td>
+                        {{ ride.record_created_on }}
+                    </td>
+                    <td>
+                        {{ ride.member_car_id }}
+                    </td>
+                    <td>
+                        {{ ride.travel_start_time }}
+                    </td>
+                    <td>
+                        {{ ride.source_location_id }}
+                    </td>
+                    <td>
+                        {{ ride.destination_location_id }}
+                    </td>
+                    <td>
+                        {{ ride.seats_offered }}
+                    </td>
+                    <td>
+                        {{ ride.contribution_per_head }}
+                    </td>
+                    <td>
+                        {{ ride.luggage_size_id }}
+                    </td>
+                    <td>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" id="ride_id" name="ride_id" value="{{ ride.id }}">
+                            <input class="btn btn-outline-danger btn-condensed" type="submit" name="action" value="Request">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+{% endblock %}
