@@ -1,6 +1,6 @@
 # Carpool
 
-##Instructions to install Python, PyCharm, Django and Run Webserver
+Instructions to install Python, PyCharm, Django and Run Webserver
 
 * Step 1: Downloaded Python : 3.10.5
 
